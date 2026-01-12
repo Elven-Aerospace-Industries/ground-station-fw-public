@@ -53,7 +53,7 @@ class backend:
         
         self.telemetryFileObject = open(self.sessionLogPathTelemetry, "w+")
         print("Recorded on the Elven Aerospace Industries Ground Station Client App", file=self.telemetryFileObject)
-        print("uptime,alt,ax,ay,az,acx,acy,acz,lat,lng", file=self.telemetryFileObject)
+        print("uptime,alt,ax,ay,az,acx,acy,acz,lat,lng,adc1,adc2,speed,state", file=self.telemetryFileObject)
         self.telemetryFileObject.flush()
 
         self.downloadFileObject = open(self.sessionLogPathDownload, "w+")
@@ -110,7 +110,7 @@ class backend:
                         self.total_acceleration = (accleration_x + accleration_y + accleration_z) ** 0.5
                         
                         self.uptime = int(dataList[0].replace("RECV:", ""))
-                        self.state = int(dataList[12])
+                        self.state = int(dataList[13])
                         self.d_chute_adc = int(dataList[10])
                         self.m_chute_adc = int(dataList[11])
                         self.GPSlat = float(dataList[8])
